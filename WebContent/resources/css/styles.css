@@ -1,0 +1,37 @@
+.maxHeight{
+	height: 100vh;
+}
+
+.centerItems{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.flexHor{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.cards-containers{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.flexHor *{
+	margin: 0 1.5em 0 1.5em;
+}
+
+.three-btn *{
+	margin: 0 0.5em 0 0.5em;
+	width: 30%;
+}
+
+.InputField{
+	width: 50%;
+	margin: 0 1.5em 0 1.5em;
+}
