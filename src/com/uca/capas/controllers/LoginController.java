@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.uca.capas.domain.Sucursal;
 import com.uca.capas.services.SucursalService;
 import com.uca.capas.services.UserService;
 
@@ -36,6 +37,7 @@ public class LoginController {
 		if(userService.login(username, password)) {
 			mav.setViewName("dashboard");
 			mav.addObject("sucursales", sucursalService.getAllSucursales());
+			mav.addObject("sucursal", new Sucursal());
 		}else {
 			mav.setViewName("main");
 			mav.addObject("response", "Not Logged");

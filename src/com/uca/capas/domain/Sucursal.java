@@ -10,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity(name="sucursal")
 public class Sucursal {
@@ -17,24 +21,31 @@ public class Sucursal {
 	@Id
 	@Column(name = "codigo")
 	@GeneratedValue(generator = "sucursal_codigo_seq", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "sucursal_codigo_seq", schema = "public")
+	@SequenceGenerator(name = "sucursal_codigo_seq", sequenceName = "public.sucursal_codigo_seq", allocationSize = 1)
 	private Integer _id;
 	
+	@NotEmpty(message = "Nombre de local requerido")
 	@Column(name = "nombre")
 	private String name;
 	
+	@NotEmpty(message = "Dirección de local requerido")
 	@Column(name = "ubicacion")
 	private String location;
 	
+	@NotEmpty(message = "Hora de apertura de local requerido")
 	@Column(name = "horario_apertura")
 	private String openingSchedule;
 	
+	@NotEmpty(message = "Hora de cierre de local requerido")
 	@Column(name = "horario_cierre")
 	private String closingSchedule;
 	
+	@NotNull(message = "Cantidad de mesas requerido")
+	@Min(value = 1, message = "La cantidad de mesas no debe ser menor a 1")
 	@Column(name = "nmesas")
-	private Integer numChairs;
+	private Integer numSpaces;
 	
+	@NotEmpty(message = "Nombre del gerente requerido")
 	@Column(name = "nomgerente")
 	private String managerName;
 	
@@ -81,12 +92,12 @@ public class Sucursal {
 		this.closingSchedule = closingSchedule;
 	}
 
-	public Integer getNumChairs() {
-		return numChairs;
+	public Integer getNumSpaces() {
+		return numSpaces;
 	}
 
-	public void setNumChairs(Integer numChairs) {
-		this.numChairs = numChairs;
+	public void setNumSpaces(Integer numSpaces) {
+		this.numSpaces = numSpaces;
 	}
 
 	public String getManagerName() {
