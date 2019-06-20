@@ -19,6 +19,10 @@
 </head>
 <body class = "container centerItems jumbotron">
 
+	<button type="button" class="btn btn-info" style = "width: 75%" onclick="window.location.href = '${pageContext.request.contextPath}/Store?id=${employee.office.id}'">
+		<i class="fas fa-backward"></i> ${employee.office.name}
+	</button>
+
 	<div class="jumbotron">
 	  <h1 class="display-3">${employee.name}</h1>
 	  <p class="lead">Edad: ${employee.age} años</p>

@@ -18,6 +18,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body class = "container centerItems jumbotron">
+	<button type="button" class="btn btn-info" style = "width: 75%" onclick="window.location.href = '${pageContext.request.contextPath}/dashboard'">
+		<i class="fas fa-backward"></i> Dashboard
+	</button>
 
 	<div class="jumbotron">
 	  <h1 class="display-3">${store.name}</h1>
