@@ -40,7 +40,8 @@ public class LoginController {
 			mav.addObject("sucursal", new Sucursal());
 		}else {
 			mav.setViewName("main");
-			mav.addObject("response", "Not Logged");
+			mav.addObject("hasError", "yes");
+			mav.addObject("response", "Credenciales invalidas");
 		}
 		
 		return mav;
