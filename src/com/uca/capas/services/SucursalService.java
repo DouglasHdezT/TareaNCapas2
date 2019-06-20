@@ -8,9 +8,9 @@ import com.uca.capas.domain.Sucursal;
 
 public interface SucursalService {
 	
-	public List<Sucursal> getAllSucursales();
+	public List<Sucursal> getAllSucursales() throws DataAccessException;
 	
-	public Sucursal insertNewStore(Sucursal newStore);
+	public Sucursal insertNewStore(Sucursal newStore) throws DataAccessException;
 	
 	public void deleteStore(int id) throws DataAccessException;
 	

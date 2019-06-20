@@ -10,11 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@Entity(name="sucursal")
+@Entity
+@Table(schema="public",name="sucursal")
 public class Sucursal {
 
 	@Id
@@ -48,7 +50,7 @@ public class Sucursal {
 	@Column(name = "nomgerente")
 	private String managerName;
 	
-	@OneToMany(mappedBy = "office", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "office", fetch = FetchType.LAZY)
 	private List<Empleado> employeesList;
 
 	public Integer getId() {

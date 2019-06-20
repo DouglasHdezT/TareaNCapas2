@@ -102,7 +102,7 @@
 	
      <h2>Empleados.</h2><br>
      <button type="button" class="btn btn-outline-primary btn-lg" style="margin:0 0 1rem 0" data-toggle="modal" data-target="#registerEmployeeModal">
-		<i class="fas fa-edit"></i> Añadir empleado.
+		<i class="fas fa-plus"></i> Añadir empleado.
 	</button><br>
 	
 	<div class="modal fade" id = "registerEmployeeModal"  tabindex="-1" role="dialog">
@@ -115,7 +115,7 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        <f:form id="editStoreForm"  action="${pageContext.request.contextPath}/addEmployee" class="centerItems" method="post" modelAttribute="employee">
+	        <f:form id="addEmployeeStoreForm"  action="${pageContext.request.contextPath}/addEmployee" class="centerItems" method="post" modelAttribute="employee">
 	        	<f:input type= "hidden" path="id"/>
 	        	<label>Nombre del empleado</label>
 	        	<f:input class="form-control" type="text" path="name" id="name"/>
@@ -149,7 +149,7 @@
 	        </f:form>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" id="submit_store" class="btn btn-primary">Editar sucursal</button>
+	        <button type="button" id="submit_store_employee" class="btn btn-primary">Añadir Empleado</button>
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 	      </div>
 	    </div>
@@ -191,6 +191,11 @@
 	document.querySelector("#submit_store").onclick = ()=>{
 
 		document.querySelector("#editStoreForm").submit()	
+		}
+
+	document.querySelector("#submit_store_employee").onclick = ()=>{
+
+		document.querySelector("#addEmployeeStoreForm").submit()	
 		}
 	
 </script>

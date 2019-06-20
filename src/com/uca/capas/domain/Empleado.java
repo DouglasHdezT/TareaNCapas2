@@ -10,18 +10,20 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@Entity(name="empleado")
+@Entity
+@Table(schema="public",name="empleado")
 public class Empleado {
 
 	@Id
 	@Column(name = "codigo")
 	@GeneratedValue(generator = "empleado_codigo_seq", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "empleado_codigo_seq", schema = "public")
+	@SequenceGenerator(name = "empleado_codigo_seq", sequenceName = "public.empleado_codigo_seq", allocationSize = 1)
 	private Integer _id;
 	
 	@NotEmpty(message = "Nombre del empleado requerido")
@@ -32,7 +34,7 @@ public class Empleado {
 	@Max(value = 60, message = "El empleado no puede ser mayor a 60 años")
 	@NotNull(message = "El campo de edad es requerido")
 	@Column(name = "edad")
-	private String age;
+	private Integer age;
 	
 	
 	@Column(name = "genero")
@@ -41,7 +43,7 @@ public class Empleado {
 	@Column(name = "estado")
 	private Boolean status;
 	
-	@ManyToOne(fetch = FetchType.EAGER , cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER , cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "sucursal")
 	private Sucursal office;
 
@@ -61,11 +63,11 @@ public class Empleado {
 		this.name = name;
 	}
 
-	public String getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(String age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
@@ -94,7 +96,7 @@ public class Empleado {
 	}
 	
 	public String getGenderDelegate() {
-		if(this.gender == "M") {
+		if(this.gender.equals("M")) {
 			return "Masculino";
 		}else {
 			return "Femenino";
