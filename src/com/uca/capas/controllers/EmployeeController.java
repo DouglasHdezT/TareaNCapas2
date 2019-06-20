@@ -96,4 +96,56 @@ public class EmployeeController {
 		return mav;
 	}
 	
+	
+	@RequestMapping("/Employee")
+	public ModelAndView showSingleEmploye(@RequestParam("id") Integer id) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("singleEmployee");
+		
+		try {
+			
+			Empleado employee = employeeService.getOneEmployeeById(id);
+			
+			mav.addObject("employee", employee);
+			mav.addObject("employeeForm", employee);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			mav.addObject("hasErrors", "Yes");
+			mav.addObject("message", "Empleado no encontrado.");
+			mav.addObject("employeeForm", new Empleado());
+		}
+		
+		
+		return mav;
+	}
+	
+	
+	@RequestMapping(value  ="/editEmployee")
+	public ModelAndView editEmployee(@ModelAttribute("employeeForm") @Valid Empleado employeeForm, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("singleEmployee");
+		
+		if(result.hasErrors()) {
+			mav.addObject("hasErrorsForm", "Yes");
+			mav.addObject("hasErrors", "Yes");
+			mav.addObject("message", "Error al modificar empleado.");
+		}else {
+			try {
+				employeeService.insertEmpleado(employeeForm);
+				mav.addObject("hasErrors", "No");
+				mav.addObject("message", "Empleado Modificado con éxito.");
+			}catch (Exception e) {
+				e.printStackTrace();
+				mav.addObject("hasErrors", "Yes");
+				mav.addObject("message", "Error al modificar empleado.");
+			}
+		}
+		
+		Empleado empleadoReal = employeeService.getOneEmployeeById(employeeForm.getId());
+		mav.addObject("employee", empleadoReal);
+		mav.addObject("employeeForm", employeeForm);
+		
+		return mav;
+	}
 }
