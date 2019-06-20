@@ -177,7 +177,7 @@
 					<td>${empl.genderDelegate}</td>
 					<td>${empl.statusDelegate}</td>
 					<td ><button type="button" class="btn btn-secondary" onclick="window.location.href = ''"><i class="fas fa-address-card"></i></button></td>
-					<td ><button type="button" class="btn btn-secondary" onclick="window.location.href = ''"><i class="fas fa-trash"></i></button></td>
+					<td ><button type="button" class="btn btn-secondary" onclick="window.location.href = '${pageContext.request.contextPath}/deleteEmployee?id_store=${store.id}&id_employee=${empl.id}'"><i class="fas fa-trash"></i></button></td>
 				
 				</tr>
 			

@@ -43,7 +43,7 @@ public class Empleado {
 	@Column(name = "estado")
 	private Boolean status;
 	
-	@ManyToOne(fetch = FetchType.EAGER , cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "sucursal")
 	private Sucursal office;
 

@@ -67,4 +67,33 @@ public class EmployeeController {
 		return mav;
 	}
 	
+	@RequestMapping(value  = "/deleteEmployee")
+	public ModelAndView deleteEmployee(@RequestParam("id_store") int id_store ,@RequestParam("id_employee") int id_employee) {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("singleStore");
+		Sucursal currentStore = sucursalService.getOneById(id_store);
+		
+		try {
+			
+			employeeService.deleteEmpleado(id_employee);;
+			
+			mav.addObject("hasErrors", "No");
+			mav.addObject("message", "Empleado eliminado correctamente");
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			
+			mav.addObject("hasErrors", "Yes");
+			mav.addObject("message", "Error al momento de eliminar empleado");
+		}
+		
+		mav.addObject("employee", new Empleado());
+		mav.addObject("store", currentStore);
+		mav.addObject("storeForm", currentStore);
+		mav.addObject("empleados", currentStore.getEmployeesList());
+		
+		return mav;
+	}
+	
 }
