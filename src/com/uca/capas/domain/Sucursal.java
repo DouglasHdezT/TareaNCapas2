@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -49,14 +48,14 @@ public class Sucursal {
 	@Column(name = "nomgerente")
 	private String managerName;
 	
-	@OneToMany(mappedBy = "office", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "office", fetch = FetchType.EAGER)
 	private List<Empleado> employeesList;
 
-	public Integer get_id() {
+	public Integer getId() {
 		return _id;
 	}
 
-	public void set_id(Integer _id) {
+	public void setId(Integer _id) {
 		this._id = _id;
 	}
 
@@ -77,7 +76,16 @@ public class Sucursal {
 	}
 
 	public String getOpeningSchedule() {
-		return openingSchedule;
+		if(openingSchedule != null) {
+			String[] result = openingSchedule.split(":");
+			if(result[0].length() == 1) {
+				result[0] ="0"+result[0]; 
+			}
+			
+			return result[0]+":"+result[1];
+		}else {
+			return openingSchedule;
+		}
 	}
 
 	public void setOpeningSchedule(String openingSchedule) {
@@ -85,7 +93,18 @@ public class Sucursal {
 	}
 
 	public String getClosingSchedule() {
-		return closingSchedule;
+		if(closingSchedule != null) {
+
+			String[] result = closingSchedule.split(":");
+			if(result[0].length() == 1) {
+				result[0] ="0"+result[0]; 
+			}
+			
+			return result[0]+":"+result[1];
+		}else {
+			return closingSchedule;
+		}
+		
 	}
 
 	public void setClosingSchedule(String closingSchedule) {

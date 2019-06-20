@@ -3,6 +3,7 @@ package com.uca.capas.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +31,11 @@ public class SucursalServiceImplementation implements SucursalService {
 	@Transactional(rollbackFor = Exception.class )
 	public void deleteStore(int id) {
 		sucursalrepository.deleteById(id);
+	}
+
+	@Override
+	public Sucursal getOneById(int id) throws DataAccessException {
+		return sucursalrepository.findOneBy_id(id);
 	}
 	
 	

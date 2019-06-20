@@ -14,4 +14,6 @@ public interface SucursalService {
 	
 	public void deleteStore(int id) throws DataAccessException;
 	
+	public Sucursal getOneById(int id) throws DataAccessException;
+	
 }

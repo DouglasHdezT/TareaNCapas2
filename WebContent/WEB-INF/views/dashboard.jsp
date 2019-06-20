@@ -106,9 +106,8 @@
 			    <h4 class="card-title" style="height: 4rem;">${sucursal.name}</h4>
 			    <p class="card-text" style="height: 4rem;">${sucursal.location}</p>
 			    <div class="flexHor three-btn card-text">
-			    	<button type="button" class="btn btn-secondary"><i class="fas fa-address-card"></i></button>
-			    	<button type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
-			    	<button type="button" class="btn btn-danger" onclick="window.location.href = '${pageContext.request.contextPath}/deleteStore?id=${sucursal._id}'">
+			    	<button type="button" class="btn btn-secondary" onclick="window.location.href = '${pageContext.request.contextPath}/Store?id=${sucursal.id}'"><i class="fas fa-address-card"></i></button>
+			    	<button type="button" class="btn btn-danger" onclick="window.location.href = '${pageContext.request.contextPath}/deleteStore?id=${sucursal.id}'">
 			    		<i class="fas fa-trash"></i>
 			    	</button>
 			    </div>
